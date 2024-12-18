@@ -14,20 +14,19 @@ def player_gameplay(possible_numbers, combination_size):
     print("Enter 4 numbers (w/o space) among the following list.")
     print(str(possible_numbers) + " :")
 
-    player_proposition = input()
-    player_proposition_in_list = list(player_proposition)
-    valid_proposition = True
+    valid_proposition = False
 
-    for number in player_proposition_in_list:
-        if number not in possible_numbers:
-            valid_proposition = False
+    while valid_proposition == False:
+        player_proposition = input()
+        player_proposition_in_list = list(player_proposition)
 
-    if len(player_proposition_in_list) != len(combination_size):
-        print("Number of entries is incorrect. Please re-enter 4 numbers.")
-    elif valid_proposition == False:
-        print("You entered an invalid number. Please choose among the possible numbers.")
-    else:
-        print('Your proposition is ' + str(player_proposition_in_list))
+        if len(player_proposition_in_list) != len(combination_size):
+            print("Number of entries is incorrect. Please re-enter 4 numbers.")
+        elif any(number not in possible_numbers for number in player_proposition_in_list):
+            print("You entered an invalid number. Please choose among the possible numbers.")
+        else:
+            valid_proposition = True
+            print('Your proposition is ' + str(player_proposition_in_list))
 
     return player_proposition_in_list
 
@@ -51,16 +50,6 @@ def verification(player_proposition_in_list, combination):
             else:
                 hints[index] = "x"
 
-    # for index, number in enumerate(player_proposition_in_list):
-    #     if number == temp_combination[index]:
-    #         hints.append("o")
-    #         temp_combination[index] = None
-    #     elif number in temp_combination:
-    #         hints.append("-")
-    #         temp_combination[temp_combination.index(number)] = None
-    #     else:
-    #         hints.append("x")
-
     print("Hints : " + str(hints))
 
     return hints
@@ -71,7 +60,6 @@ def create_game():
     game_won = False
 
     combination = create_combination(possible_numbers, combination_size)
-
 
     for _ in max_number_of_attempts:
         number_of_attempts += 1
