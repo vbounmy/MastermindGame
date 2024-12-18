@@ -7,12 +7,21 @@ possible_numbers = ["1", "2", "3", "4", "5", "6"]
 number_of_attempts = 10
 combination = []
 
-def create_combination(combination_size, possible_numbers, combination):
-    combination = []
+def create_combination(combination):
     for _ in combination_size:
         combination += choice(possible_numbers)
-    print(combination)
+    # print(combination)
     return combination
 
-create_combination(combination_size, possible_numbers, combination)
+def player_gameplay():
+    print("Enter (one by one) 4 numbers among the following list")
+    print(possible_numbers)
+    player_proposition = []
+    for _ in combination_size:
+        player_proposition += input()
+    print('Your proposition is ' + str(player_proposition))
+    return player_proposition
+
+create_combination(combination)
+player_gameplay()
 
