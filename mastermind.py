@@ -32,15 +32,35 @@ def player_gameplay(possible_numbers, combination_size):
     return player_proposition_in_list
 
 def verification(player_proposition_in_list, combination):
-    print("Hints caption : x: incorrect answer, -: right number but wrong position, o: right answer")
+    # print("Hints caption : x: incorrect answer, -: right number but wrong position, o: right answer")
     hints = []
+    temp_combination = combination.copy()
+
     for index, number in enumerate(player_proposition_in_list):
-        if number not in combination:
-            hints.append("x")
-        elif index != combination.index(number):
-            hints.append("-")
-        else:
+        if number == temp_combination[index]:
             hints.append("o")
+            temp_combination[index] = None
+        else:
+            hints.append(None)
+
+    for index, number in enumerate(player_proposition_in_list):
+        if hints[index] == None:
+            if number in temp_combination:
+                hints[index] = "-"
+                temp_combination[temp_combination.index(number)] = None
+            else:
+                hints[index] = "x"
+
+    # for index, number in enumerate(player_proposition_in_list):
+    #     if number == temp_combination[index]:
+    #         hints.append("o")
+    #         temp_combination[index] = None
+    #     elif number in temp_combination:
+    #         hints.append("-")
+    #         temp_combination[temp_combination.index(number)] = None
+    #     else:
+    #         hints.append("x")
+
     print("Hints : " + str(hints))
     return hints
 
