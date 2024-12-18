@@ -14,14 +14,25 @@ def create_combination(combination):
     return combination
 
 def player_gameplay():
-    print("Enter (one by one) 4 numbers among the following list")
+    print("Enter (one by one) 4 numbers among the following list.")
     print(possible_numbers)
     player_proposition_in_list = []
 
     player_proposition = input()
     player_proposition_in_list = list(player_proposition)
+    valid_proposition = True
 
-    print('Your proposition is ' + str(player_proposition_in_list))
+    for number in player_proposition_in_list:
+        if number not in possible_numbers:
+            valid_proposition = False
+
+    if len(player_proposition_in_list) != len(combination):
+        print("Number of entries is incorrect. Please re-enter 4 numbers.")
+    elif valid_proposition == False:
+        print("You entered an invalid number. Please choose among the possible numbers.")
+    else:
+        print('Your proposition is ' + str(player_proposition_in_list))
+
     return player_proposition_in_list
 
 create_combination(combination)
