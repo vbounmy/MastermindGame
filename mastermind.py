@@ -16,11 +16,13 @@ def create_combination(combination):
 def player_gameplay():
     print("Enter (one by one) 4 numbers among the following list")
     print(possible_numbers)
-    player_proposition = []
-    for _ in combination_size:
-        player_proposition += input()
-    print('Your proposition is ' + str(player_proposition))
-    return player_proposition
+    player_proposition_in_list = []
+
+    player_proposition = input()
+    player_proposition_in_list = list(player_proposition)
+
+    print('Your proposition is ' + str(player_proposition_in_list))
+    return player_proposition_in_list
 
 create_combination(combination)
 player_gameplay()
