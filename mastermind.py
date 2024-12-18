@@ -62,13 +62,36 @@ def verification(player_proposition_in_list, combination):
     #         hints.append("x")
 
     print("Hints : " + str(hints))
+
     return hints
+
+def create_game():
+    max_number_of_attempts = 10*[""]
+    number_of_attempts = 0
+    game_won = False
+
+    combination = create_combination(possible_numbers, combination_size)
+
+
+    for _ in max_number_of_attempts:
+        number_of_attempts += 1
+        print("-"*30)
+        print("Number of attempts : " + str(number_of_attempts) + "/10")
+        player_proposition_in_list = player_gameplay(possible_numbers, combination_size)
+        hints = verification(player_proposition_in_list, combination)
+
+        if hints == ["o", "o", "o", "o"]:
+            game_won == True
+            print("Victory")
+            break
+        elif game_won == False:
+            if number_of_attempts < 10:
+                print("Wrong answer, please retry.")
+            else:
+                print("Defeat. The right answer was " + str(combination))
+    
 
 combination_size = ["", "", "", ""]
 possible_numbers = ["1", "2", "3", "4", "5", "6"]
-number_of_attempts = 10
 
-combination = create_combination(possible_numbers, combination_size)
-player_proposition_in_list = player_gameplay(possible_numbers, combination_size)
-verification(player_proposition_in_list, combination)
-
+create_game()
