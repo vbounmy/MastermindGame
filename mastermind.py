@@ -80,8 +80,8 @@ def create_game():
             else:
                 print(BOLD + RED + "\n" + "Defeat." + "\n" + "The secret combination was " + str(combination) + END)
     
+if __name__ == "__main__":
+    combination_size = ["", "", "", ""]
+    possible_numbers = ["1", "2", "3", "4", "5", "6"]
 
-combination_size = ["", "", "", ""]
-possible_numbers = ["1", "2", "3", "4", "5", "6"]
-
-create_game()
+    create_game()
